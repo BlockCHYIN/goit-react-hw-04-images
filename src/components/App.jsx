@@ -1,39 +1,16 @@
-import {React, Component } from "react";
+import { useState } from 'react';
 
-import {AppContainer} from './AppContainer.styles'
-import Gallery from "./Gallery";
-import Searchbar from "./Searchbar";
+import { AppContainer } from './AppContainer.styles';
+import Gallery from './Gallery';
+import Searchbar from './Searchbar';
 
+export default function App() {
+  const [searchText, setsearchText] = useState('');
 
-
-
-
-class App extends Component{
-state = {
-  searchText : '',
-}
-
-formSudmitHandler = value => {
-  this.setState({
-    searchText: value,
-  }
- )
-}
-
-render(){
-const {formSudmitHandler} = this;
-const {searchText} = this.state;
-
- return (
+  return (
     <AppContainer>
-      <Searchbar
-       onSubmit={formSudmitHandler}
-       >
-      </Searchbar>
-    <Gallery searchText={searchText}/>
-    </AppContainer >
-  ); 
+      <Searchbar onSubmit={setsearchText}></Searchbar>
+      <Gallery searchText={searchText} />
+    </AppContainer>
+  );
 }
-}
-
-export default App;
